@@ -12,10 +12,10 @@ The [advection-diffusion equation](https://en.wikipedia.org/wiki/Convection%E2%8
 The differential form of the two-dimensional advection-diffusion equation is given as:
 
 ```math
-\frac{\partial \psi}{\partial t}+u\frac{\partial \psi}{\partial x}+v\frac{\partial \psi}{\partial y}= D(\frac{\partial^2 \psi}{\partial x^2}+\frac{\partial^2 \psi}{\partial y^2})
+\frac{\partial \phi}{\partial t}+u\frac{\partial \phi}{\partial x}+v\frac{\partial \phi}{\partial y}= D(\frac{\partial^2 \phi}{\partial x^2}+\frac{\partial^2 \phi}{\partial y^2})
 ```
 
-Here, $`\phi`$ is the scalar being solved for, $`u`$ and $`v`$ are the advection velocities and $`D`$ is the diffusion coefficient. The RHS of the equation represents the diffusion term, whereas in the LHS, the first term is the temporal term and the other two terms represent the advection term, responsible for the bulk transport of the scalar.
+Here, $\phi$ is the scalar being solved for, $u$ and $v$ are the advection velocities and $D$ is the diffusion coefficient. The RHS of the equation represents the diffusion term, whereas in the LHS, the first term is the temporal term and the other two terms represent the advection term, responsible for the bulk transport of the scalar.
 
 The current formulation uses the methodology described by [Versteeg and Malalasekara (2007)](https://www.pearson.com/en-gb/subject-catalog/p/introduction-to-computational-fluid-dynamics-an-the-finite-volume-method/P200000005670/9780131274983), wherein the algebraic formulation is obtained by discretizing the equation on a 2-dimensional grid. The current version of the project uses pre-defined discretization schemes. The temporal term is discretized using the first order accurate explicit Euler method, whereas the advection and diffusion terms are discretized using the [First Order Upwind (FOU)](https://en.wikipedia.org/wiki/Upwind_scheme) and the [central differencing scheme](https://en.wikipedia.org/wiki/Central_differencing_scheme) respectively.
 
@@ -50,7 +50,7 @@ The solver generates output files in the VTK format. To visualize the data gener
 
 ## Validation
 
-To validate the solver, the results are compared for a problem with a known analytical solution. The length and height of the computational domain are 20 and 1 respectively. $`\phi`$ is set to be 0 everywhere in the domain initially. At the west boundary, $`\phi`$ is set to be 1, whereas at the south and north boundaries, it is set to 0. A zero-gradient boundary condition is applied at the east-boundary. The advection velocities $`u`$ and $`v`$ are chosen as 1 and 0 respectively and the diffusion coefficient is $`\frac{1}{70}`$ ($`Re=100, Pr=0.7`$). The analytical solution for this problem (given by [Burmeister (1993)](https://www.wiley.com/en-sg/Convective+Heat+Transfer,+2nd+Edition-p-9780471577096)) is as follows:
+To validate the solver, the results are compared for a problem with a known analytical solution. The length and height of the computational domain are 20 and 1 respectively. $\phi$ is set to be 0 everywhere in the domain initially. At the west boundary, $\phi$ is set to be 1, whereas at the south and north boundaries, it is set to 0. A zero-gradient boundary condition is applied at the east-boundary. The advection velocities $u$ and $v$ are chosen as 1 and 0 respectively and the diffusion coefficient is $\frac{1}{70}$ ($Re=100, Pr=0.7$). The analytical solution for this problem (given by [Burmeister (1993)](https://www.wiley.com/en-sg/Convective+Heat+Transfer,+2nd+Edition-p-9780471577096)) is as follows:
 
 ```math
 $\phi(X,Y)=\frac{4}{\pi} \displaystyle\sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1} \cos[\eta(Y-0.5)] \exp[-\eta^2 \frac{X}{Re Pr}]$
